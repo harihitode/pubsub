@@ -28,9 +28,9 @@ ros2 run comm subscriber
 
 or kicking launch file
 
-```
+``
 ros2 launch comm inter_process_pubsub.launch.py
-```
+``
 
 2. intra-process pointer passing pub/sub
 
