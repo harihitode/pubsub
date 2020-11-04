@@ -20,7 +20,7 @@ source install/setup.bash
 ros2 run comm publisher
 ``
 
-on other terminal
+on the other terminal
 
 ``
 ros2 run comm subscriber
