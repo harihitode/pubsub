@@ -6,7 +6,7 @@ This program includes latency check.
 ## build & setup
 
 ```
-source /opt/ros/eloquent/setup.bash
+source /opt/ros/${ROS_DISTRO}/setup.bash
 cd pubsub/
 colcon build
 source install/setup.bash
@@ -32,5 +32,5 @@ ros2 run comm subscriber
 ros2 run comm pubsub
 ``
 
-That is all ;)
+That is all, thank you ;)
 
