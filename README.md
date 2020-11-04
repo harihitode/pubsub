@@ -29,14 +29,13 @@ ros2 run comm subscriber
 or kicking launch file
 
 ```
-ros2 launch launch/inter_process_pubsub.launch.py
+ros2 launch comm inter_process_pubsub.launch.py
 ```
 
-2. intra-process pointer passing pub/sub 
+2. intra-process pointer passing pub/sub
 
 ``
-ros2 launch launch/intra_process_pubsub.launch.py
+ros2 launch comm intra_process_pubsub.launch.py
 ``
 
 That is all, thank you ;)
-

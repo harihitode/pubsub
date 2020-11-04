@@ -1,11 +1,14 @@
 import launch
 import launch_ros.actions
 
+BLOB_SIZE = 2000;
+
 def generate_launch_description():
     pubsub = launch_ros.actions.Node(
         package='comm',
         node_executable='pubsub',
-        output='screen'
+        output='screen',
+        parameters=[{'blob_size':BLOB_SIZE}]
     )
 
     return launch.LaunchDescription([

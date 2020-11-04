@@ -54,4 +54,9 @@ install(TARGETS
   pubsub
   DESTINATION lib/${PROJECT_NAME})
 
+# install "launch" directory to the share
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME})
+
 ament_package()

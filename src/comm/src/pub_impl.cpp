@@ -24,6 +24,7 @@ namespace snippet_comm {
     if (!pub_ptr) {
       return;
     }
+    printf("blob_size: %lu\n", blob_size_);
     comm::msg::StampedBin::UniquePtr msg(new comm::msg::StampedBin());
     msg->data.data.resize(blob_size_);
     for (size_t i = 0; i < blob_size_; i++) {
