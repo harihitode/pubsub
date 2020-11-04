@@ -9,7 +9,7 @@ namespace snippet_comm {
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Publisher<comm::msg::StampedBin>::SharedPtr publisher_;
   public:
-    explicit Publisher(const std::string & name, const std::string & output, bool intra_process, size_t blob_size);
+    explicit Publisher(const std::string & name, const std::string & output, bool intra_process = false);
   private:
     size_t blob_size_;
     void timer_callback();

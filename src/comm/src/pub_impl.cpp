@@ -10,17 +10,16 @@ using namespace std::chrono;
 using namespace std::chrono_literals;
 
 namespace snippet_comm {
-  Publisher::
-  Publisher(const std::string & name, const std::string & output,
-            bool intra_process, size_t blob_size)
-    : Node(name, rclcpp::NodeOptions().use_intra_process_comms(intra_process)), blob_size_(blob_size) {
-    publisher_ = this->create_publisher<comm::msg::StampedBin>(output, 10);
-    timer_ = this->create_wall_timer(500ms,
-                                     std::bind(&Publisher::timer_callback, this));
+  Publisher::Publisher(const std::string & name, const std::string & output, bool intra_process)
+    : Node(name, rclcpp::NodeOptions().use_intra_process_comms(intra_process)) {
+    // data size in message
+    this->declare_parameter("blob_size", 1000);
+    blob_size_ = this->get_parameter("blob_size").as_int();
+    publisher_ = this->create_publisher<comm::msg::StampedBin>(output, 1);
+    timer_ = this->create_wall_timer(100ms, std::bind(&Publisher::timer_callback, this));
   }
 
-  void Publisher::
-  timer_callback()  {
+  void Publisher::timer_callback() {
     auto pub_ptr = publisher_;
     if (!pub_ptr) {
       return;
