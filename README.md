@@ -14,29 +14,29 @@ source install/setup.bash
 
 ## execution
 
-1.A normal pub/sub (using default rmw)
+1.
 
-``
-ros2 run comm publisher
-``
+  a. normal pub/sub (using default rmw)
 
-on the other terminal
+    ``
+    ros2 run comm publisher
+    ``
 
-``
-ros2 run comm subscriber
-``
+    ``
+    ros2 run comm subscriber
+    ``
 
-or kicking launch file
+  or kicking launch file
 
-``
-ros2 launch comm inter_process_pubsub.launch.py blob_size:=1000
-``
+    ``
+    ros2 launch comm inter_process_pubsub.launch.py blob_size:=1000
+    ``
 
-1.B intra-process pointer passing pub/sub
+  b. intra-process pointer passing pub/sub
 
-``
-ros2 launch comm intra_process_pubsub.launch.py blob_size:=1000
-``
+    ``
+    ros2 launch comm intra_process_pubsub.launch.py blob_size:=1000
+    ``
 
 2. start the publish routine
 
