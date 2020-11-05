@@ -3,16 +3,19 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "comm/msg/stamped_bin.hpp"
+#include "comm/srv/publish_loop.hpp"
 
 namespace snippet_comm {
   class Publisher : public rclcpp::Node {
-    rclcpp::TimerBase::SharedPtr timer_;
-    rclcpp::Publisher<comm::msg::StampedBin>::SharedPtr publisher_;
   public:
     explicit Publisher(const std::string & name, const std::string & output, bool intra_process = false);
+    void publish_loop(const std::shared_ptr<rmw_request_id_t> request_header,
+                      const std::shared_ptr<comm::srv::PublishLoop::Request> request,
+                      const std::shared_ptr<comm::srv::PublishLoop::Response> response);
   private:
+    rclcpp::Publisher<comm::msg::StampedBin>::SharedPtr publisher_;
+    rclcpp::Service<comm::srv::PublishLoop>::SharedPtr server_;
     size_t blob_size_;
-    void timer_callback();
   };
 }
 

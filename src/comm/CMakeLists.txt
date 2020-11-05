@@ -31,9 +31,10 @@ add_executable(pubsub src/pointer_passing.cpp src/pub_impl.cpp src/sub_impl.cpp)
 ament_target_dependencies(pubsub rclcpp std_msgs)
 
 set(msg_files "msg/StampedBin.msg")
+set(srv_files "srv/PublishLoop.srv")
 
 rosidl_generate_interfaces(
-  ${PROJECT_NAME} ${msg_files}
+  ${PROJECT_NAME} ${msg_files} ${srv_files}
   DEPENDENCIES std_msgs)
 
 rosidl_target_interfaces(
