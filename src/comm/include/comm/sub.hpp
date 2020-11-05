@@ -11,11 +11,11 @@ namespace snippet_comm {
   class Subscriber : public rclcpp::Node {
   public:
     explicit Subscriber(const std::string & name, const std::string & input, bool intra_process = false);
+    void request_publish(int64_t count);
   private:
     size_t blob_size_;
     rclcpp::Subscription<comm::msg::StampedBin>::SharedPtr subscriber_;
     void topic_callback(const comm::msg::StampedBin::UniquePtr msg) const;
-    void request_publish(int64_t count);
   };
 }
 

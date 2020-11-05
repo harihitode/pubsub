@@ -31,7 +31,6 @@ namespace snippet_comm {
     rclcpp::WallRate rate(100ms);
     RCLCPP_INFO(this->get_logger(), "LOOP START %d", count);
     while (rclcpp::ok() && (pubcount++ < count)) {
-      RCLCPP_INFO(this->get_logger(), "publish");
       auto pub_ptr = publisher_;
       if (!pub_ptr) {
         RCLCPP_ERROR(this->get_logger(), "error in publish_loop");
