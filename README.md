@@ -20,7 +20,7 @@ source install/setup.bash
 ros2 run comm publisher
 ``
 
-on other terminal
+on the other terminal
 
 ``
 ros2 run comm subscriber
@@ -28,14 +28,14 @@ ros2 run comm subscriber
 
 or kicking launch file
 
-```
-ros2 launch comm inter_process_pubsub.launch.py
-```
+``
+ros2 launch comm inter_process_pubsub.launch.py blob_size:=1000
+``
 
 2. intra-process pointer passing pub/sub
 
 ``
-ros2 launch comm intra_process_pubsub.launch.py
+ros2 launch comm intra_process_pubsub.launch.py blob_size:=1000
 ``
 
 That is all, thank you ;)
