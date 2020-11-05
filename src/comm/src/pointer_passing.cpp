@@ -11,9 +11,8 @@ int main(int argc, char * argv[]) {
   auto pub = std::make_shared<snippet_comm::Publisher>("publisher", "blob", true);
   auto sub = std::make_shared<snippet_comm::Subscriber>("subscriber", "blob", true);
 
-  executor.add_node(pub);
   executor.add_node(sub);
-  executor.spin();
+  executor.add_node(pub);
 
   rclcpp::shutdown();
   return 0;
