@@ -18,10 +18,4 @@ def generate_launch_description():
     return launch.LaunchDescription([
         arguments,
         pubsub,
-        launch.actions.RegisterEventHandler(
-            event_handler=launch.event_handlers.OnProcessExit(
-                target_action=pubsub,
-                on_exit=[launch.actions.EmitEvent(event=launch.events.Shutdown())],
-            )
-        ),
     ])
