@@ -1,4 +1,5 @@
 #include <memory>
+#include <thread>
 #include <csignal>
 
 #include "rclcpp/rclcpp.hpp"
@@ -12,7 +13,12 @@ int main(int argc, char * argv[]) {
   signal(SIGINT, sigint_handler);
 
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<snippet_comm::Subscriber>("subscriber", "blob", false));
+  auto sub = std::make_shared<snippet_comm::Subscriber>("subscriber", "blob", false);
+  // std::thread request_thread([&sub] {
+  //     sub->request_publish(100);
+  //   });
+  rclcpp::spin(sub);
+  // request_thread.join();
   rclcpp::shutdown();
 
   return 0;

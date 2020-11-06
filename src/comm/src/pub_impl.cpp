@@ -20,13 +20,16 @@ namespace snippet_comm {
     using std::placeholders::_3;
     server_ = this->
       create_service<comm::srv::PublishLoop>("publish_loop",
-                                             std::bind(&Publisher::publish_loop, this, _1, _2, _3));
+                                             std::bind(&Publisher::publish_loop_srv, this, _1, _2, _3));
   }
 
-  void Publisher::publish_loop(const std::shared_ptr<rmw_request_id_t>,
-                               const std::shared_ptr<comm::srv::PublishLoop::Request> request,
-                               const std::shared_ptr<comm::srv::PublishLoop::Response>) {
-    int64_t count = request->count;
+  void Publisher::publish_loop_srv(const std::shared_ptr<rmw_request_id_t>,
+                                   const std::shared_ptr<comm::srv::PublishLoop::Request> request,
+                                   const std::shared_ptr<comm::srv::PublishLoop::Response>) {
+    this->publish_loop(request->count);
+  }
+
+  void Publisher::publish_loop(int64_t count) {
     int64_t pubcount = 0;
     rclcpp::WallRate rate(100ms);
     RCLCPP_INFO(this->get_logger(), "LOOP START %d", count);
