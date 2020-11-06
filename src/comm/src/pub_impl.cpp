@@ -13,7 +13,7 @@ namespace snippet_comm {
     // data size in message
     this->declare_parameter("blob_size", 2000000); // not used now fixed
     blob_size_ = this->get_parameter("blob_size").as_int();
-    publisher_ = this->create_publisher<comm::msg::Stamped2MBin>(output, 1);
+    publisher_ = this->create_publisher<comm::msg::StampedBin>(output, 1);
 
     using std::placeholders::_1;
     using std::placeholders::_2;
@@ -39,11 +39,11 @@ namespace snippet_comm {
         RCLCPP_ERROR(this->get_logger(), "error in publish_loop");
         break;
       }
-      comm::msg::Stamped2MBin::UniquePtr msg(new comm::msg::Stamped2MBin());
-      // msg->data.data.resize(blob_size_);
+      comm::msg::StampedBin::UniquePtr msg(new comm::msg::StampedBin());
+      msg->data.data.resize(blob_size_);
       for (size_t i = 0; i < blob_size_; i++) {
-        // msg->data.data[i] = uint8_t(rand() % 100); // for variable length
-        msg->data[i] = uint8_t(rand() % 100); // for fixed length
+        msg->data.data[i] = uint8_t(rand() % 100); // for variable length
+        // msg->data[i] = uint8_t(rand() % 100); // for fixed length
       }
       const high_resolution_clock::time_point time_published = high_resolution_clock::now();
       const nanoseconds nsec = duration_cast<nanoseconds>(time_published.time_since_epoch());

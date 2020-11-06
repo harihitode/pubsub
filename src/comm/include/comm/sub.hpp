@@ -4,6 +4,7 @@
 #include <string>
 
 #include "rclcpp/rclcpp.hpp"
+#include "comm/msg/stamped_bin.hpp"
 #include "comm/msg/stamped2_m_bin.hpp"
 #include "comm/srv/publish_loop.hpp"
 
@@ -14,8 +15,8 @@ namespace snippet_comm {
     void request_publish(int64_t count);
   private:
     size_t blob_size_;
-    rclcpp::Subscription<comm::msg::Stamped2MBin>::SharedPtr subscriber_;
-    void topic_callback(const comm::msg::Stamped2MBin::UniquePtr msg) const;
+    rclcpp::Subscription<comm::msg::StampedBin>::SharedPtr subscriber_;
+    void topic_callback(const comm::msg::StampedBin::UniquePtr msg) const;
   };
 }
 
