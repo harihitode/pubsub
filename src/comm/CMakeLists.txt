@@ -30,7 +30,7 @@ ament_target_dependencies(subscriber rclcpp std_msgs)
 add_executable(pubsub src/pointer_passing.cpp src/pub_impl.cpp src/sub_impl.cpp)
 ament_target_dependencies(pubsub rclcpp std_msgs)
 
-set(msg_files "msg/StampedBin.msg")
+set(msg_files "msg/StampedBin.msg" "msg/Stamped1000KBin.msg")
 set(srv_files "srv/PublishLoop.srv")
 
 rosidl_generate_interfaces(

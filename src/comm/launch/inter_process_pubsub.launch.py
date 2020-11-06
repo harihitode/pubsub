@@ -17,7 +17,7 @@ def generate_launch_description():
     subscriber = launch_ros.actions.Node(
         package='comm',
         node_executable='subscriber',
-        output='log',
+        output='screen',
         parameters=[{'blob_size':launch.substitutions.LaunchConfiguration('blob_size')}]
     )
 
