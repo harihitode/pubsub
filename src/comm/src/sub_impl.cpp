@@ -11,12 +11,12 @@ namespace snippet_comm {
   Subscriber::Subscriber(const std::string & name, const std::string & input, bool intra_process) :
     Node(name, rclcpp::NodeOptions().use_intra_process_comms(intra_process)) {
     // data size in message
-    this->declare_parameter("blob_size", 1000);
+    this->declare_parameter("blob_size", 2000000);
     blob_size_ = this->get_parameter("blob_size").as_int();
     using std::placeholders::_1;
     subscriber_ = this->
-      create_subscription<comm::msg::Stamped1000KBin>(input, 1,
-                                                      std::bind(&Subscriber::topic_callback, this, _1));
+      create_subscription<comm::msg::Stamped2MBin>(input, 1,
+                                                   std::bind(&Subscriber::topic_callback, this, _1));
   }
 
   void Subscriber::request_publish(int64_t count) {
@@ -36,7 +36,7 @@ namespace snippet_comm {
     return;
   }
 
-  void Subscriber::topic_callback(const comm::msg::Stamped1000KBin::UniquePtr msg) const {
+  void Subscriber::topic_callback(const comm::msg::Stamped2MBin::UniquePtr msg) const {
     const high_resolution_clock::time_point time_subscribed = high_resolution_clock::now();
     const uint64_t end = duration_cast<nanoseconds>(time_subscribed.time_since_epoch()).count();
     const uint64_t begin = msg->stamp;

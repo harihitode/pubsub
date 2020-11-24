@@ -11,9 +11,9 @@ namespace snippet_comm {
   Publisher::Publisher(const std::string & name, const std::string & output, bool intra_process)
     : Node(name, rclcpp::NodeOptions().use_intra_process_comms(intra_process)) {
     // data size in message
-    this->declare_parameter("blob_size", 1000); // not used now fixed
+    this->declare_parameter("blob_size", 2000000); // not used now fixed
     blob_size_ = this->get_parameter("blob_size").as_int();
-    publisher_ = this->create_publisher<comm::msg::Stamped1000KBin>(output, 1);
+    publisher_ = this->create_publisher<comm::msg::Stamped2MBin>(output, 1);
 
     using std::placeholders::_1;
     using std::placeholders::_2;
@@ -39,7 +39,7 @@ namespace snippet_comm {
         RCLCPP_ERROR(this->get_logger(), "error in publish_loop");
         break;
       }
-      comm::msg::Stamped1000KBin::UniquePtr msg(new comm::msg::Stamped1000KBin());
+      comm::msg::Stamped2MBin::UniquePtr msg(new comm::msg::Stamped2MBin());
       // msg->data.data.resize(blob_size_);
       for (size_t i = 0; i < blob_size_; i++) {
         // msg->data.data[i] = uint8_t(rand() % 100); // for variable length
