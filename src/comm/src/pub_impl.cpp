@@ -32,7 +32,7 @@ namespace snippet_comm {
   void Publisher::publish_loop(int64_t count) {
     int64_t pubcount = 0;
     rclcpp::WallRate rate(100ms);
-    RCLCPP_INFO(this->get_logger(), "LOOP START %d", count);
+    RCLCPP_INFO(this->get_logger(), "LOOP START %d, %d", count, blob_size_);
     while (rclcpp::ok() && (pubcount++ < count)) {
       auto pub_ptr = publisher_;
       if (!pub_ptr) {
